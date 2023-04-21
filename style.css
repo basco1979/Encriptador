@@ -1,0 +1,285 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #F3F5FC;
+    font-family: 'Inter';
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    height: 96px;
+}
+
+footer {
+    padding: 10px 20px 20px;
+    min-height: 25px;
+    background-color: #0A3871;
+    margin-top: auto;
+    color: white;
+}
+
+.logo{
+    height:55px;
+    width: auto;
+}
+
+.titulo{
+    font-size: 2.5em;
+    vertical-align: top;
+    color: #0A3871;
+}
+.contenedor-logo {
+    margin: auto;
+    padding: 20px;
+    display: inline-block;
+}
+
+.copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.contenedor-principal {
+    width: 100%;
+}
+
+.contenedor-mensaje {
+    display: flex;
+    flex-direction: column;
+    /* width: 98%; */
+    margin: auto;
+    padding: 0 20px;
+}
+
+#mensaje,
+#resultado,
+#mensaje-vacio {
+    width: 100%;
+    min-height: 150px;
+    resize: none;
+    margin: auto;
+    background-color: white;
+    border-style: none;
+    font-family: 'Inter';
+    color: #0A3871;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 125%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#mensaje:focus,
+#resultado:focus {
+    outline: none;
+}
+
+#mensaje::placeholder {
+    color: #0a3871af;
+    font-size: 32px;
+}
+
+.contenedor-aviso {
+    margin: 10px 0;
+    display: flex;
+    font-size: 12px;
+    color: #495057;
+    align-items: center;
+
+}
+
+#resultado {
+    display: none;
+}
+
+#mensaje-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mensaje-vacio h5 {
+    color: #343A40;
+    font-size: 24px;
+    line-height: 120%;
+    font-weight: bold;
+}
+
+#mensaje-vacio p {
+    color: #495057;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+#mensaje-vacio img {
+    height: 0;
+}
+
+.contenedor-aviso img {
+    margin-right: 5px;
+}
+
+.contenedor-botones-encriptado {
+    padding: 0 20px 20px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contenedor-boton-copiar {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #0A3871;
+    color: #0A3871;
+    background-color: #F3F5FC;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#copiar {
+    display: none;
+}
+
+.encriptar {
+    background-color: #0A3871;
+    color: white;
+}
+
+.btn:active {
+    transform: scale(0.99);
+}
+
+
+#contenedor-notificacion {
+    position: fixed;
+    top: 10px;
+    left: calc(50% - 70px);
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    background-color: #0A3871;
+    color: white;
+    padding: 10px;
+    display: none;
+    z-index: 9999;
+    border-radius: 10px;
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#contenedor-notificacion #notificacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+@media screen and (min-width: 430px) {
+
+    .contenedor-botones-encriptado {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .btn {
+        height: 60px;
+        max-width: 400px;
+        margin: 20px;
+        font-size: 16px;
+    }
+
+    .contenedor-boton-copiar {
+        justify-content: center;
+    }
+
+    #copiar {
+        width: calc(50% - 40px);
+    }
+    
+    .titulo{
+        font-size: 1.5em;
+        color: #0A3871;
+
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .contenedor-principal {
+        display: flex;
+        padding: 0 20px;
+        width: auto;
+    }
+
+    .contenedor-mensaje {
+        width: 70%;
+        padding: 0;
+    }
+
+    #mensaje,
+    #resultado,
+    #mensaje-vacio {
+        min-height: 250px;
+    }
+
+    #mensaje-vacio img {
+        margin-top: 20px;
+        height: 250px;
+    }
+
+    .btn {
+        height: 50px;
+        width: 230px;
+    }
+
+    .btn:hover {
+        box-shadow: 0px 0px 7px 4px rgb(0 0 0 / 40%);
+    }
+
+    #copiar {
+        margin: 50px 0 0 0;
+        background-color: white;
+        width: 230px;
+    }
+
+    .contenedor-mensaje2 {
+        width: 30%;
+        margin: 0 auto 20px 20px;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+}

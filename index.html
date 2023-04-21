@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 class="contenedor-logo">
+        <img src="./img/Logo.png" alt="logo" class="logo">
+        <span class="titulo">Encriptador / Desencriptador</span>
+    </h1>
+    </header>
+
+    <main class="contenedor-principal">
+      <div class="contenedor-mensaje">
+        <input
+          id="mensaje"
+          placeholder="ingrese el texto aqui"
+          autocapitalize="none"
+          pattern="[a-z ]*"
+          oninput="this.value = this.value.replace(/[^a-z\n ]/g, '')"
+        >
+        <div class="contenedor-aviso">
+            <p><i class="bi-exclamation-lg"></i>Solo letras minúsculas y sin acentos</p>
+        </div>
+
+        <div class="contenedor-botones-encriptado">
+          <button class="btn encriptar" onclick="encriptador()">Encriptar</button>
+          <button class="btn desencriptar" onclick="desencriptador()">
+            Desencriptar
+          </button>
+        </div>
+      </div>
+
+      <div class="contenedor-mensaje contenedor-mensaje2">
+        <textarea readonly id="resultado"></textarea>
+        <div id="mensaje-vacio">
+          <img src="./img/Muchacho.png" alt="no hay mensaje" />
+          <h5>Ningún mensaje fue encontrado</h5>
+          <p>Ingresa el texto que deseas encriptar o desencriptar</p>
+        </div>
+
+        <div class="contenedor-boton-copiar">
+          <button id="copiar" class="btn" onclick="copiar()">Copiar</button>
+        </div>
+      </div>
+
+      <div id="contenedor-notificacion"><p id="notificacion"></p></div>
+    </main>
+<footer><p class="copy">&#169 Basko - 2023</p></footer>
+<script>
+    function encriptador(){
+        var textoEncriptar = document.getElementById("mensaje").value;
+        var nuevaPalabra = ""
+        for(var i=0; i<textoEncriptar.length;i++){
+            if(textoEncriptar.charAt(i) === "a"){
+                nuevaPalabra += "ai"
+            }
+            else if(textoEncriptar.charAt(i) === "e"){
+                nuevaPalabra += "enter"
+            }
+            else if(textoEncriptar.charAt(i) === "i"){
+                nuevaPalabra += "imes"
+            }
+            else if(textoEncriptar.charAt(i) === "o"){
+                nuevaPalabra += "ober"
+            }
+            else if(textoEncriptar.charAt(i) === "u"){
+                nuevaPalabra += "ufat"
+            }
+            else{
+                nuevaPalabra += textoEncriptar.charAt(i)
+            }
+
+            console.log(nuevaPalabra);
+        }
+        document.getElementById("mensaje-vacio").style.display = "none";
+        document.getElementById("resultado").innerText = nuevaPalabra;
+        document.getElementById("resultado").style.display = "flex";
+        document.getElementById("copiar").style.display = "inline";
+
+
+    }
+
+    function desencriptador(){
+        var textoDesencriptar = document.getElementById("mensaje").value;
+        var nuevaPalabra = textoDesencriptar.replace(/ai/img, "a");
+        nuevaPalabra = nuevaPalabra.replace(/enter/img, "e");
+        nuevaPalabra = nuevaPalabra.replace(/imes/img, "i");
+        nuevaPalabra = nuevaPalabra.replace(/ober/img, "o");
+        nuevaPalabra = nuevaPalabra.replace(/ufat/img, "u");
+
+        document.getElementById("mensaje-vacio").style.display = "none";
+        document.getElementById("resultado").innerText = nuevaPalabra;
+        document.getElementById("resultado").style.display = "flex";
+        document.getElementById("copiar").style.display = "inline";
+
+    }
+
+    function copiar(){
+        var textoCopiar = document.getElementById("resultado").textContent;
+        console.log(textoCopiar)
+        var clipboard = navigator.clipboard.writeText(textoCopiar);
+        notifica("Texto copiado");
+        document.getElementById("mensaje").value = ""
+    }
+
+    function notifica(mensaje) {
+        const contenedorNotificacion = document.getElementById("contenedor-notificacion");
+    const notificacion = document.getElementById("notificacion");
+    notificacion.innerHTML = mensaje;
+    if(contenedorNotificacion.style.display == "block") {
+    }else{
+        contenedorNotificacion.style.display = "block";
+        contenedorNotificacion.style.animation = "slide-down 0.5s ease-in-out forwards";
+        setTimeout(function() {
+        contenedorNotificacion.style.animation = "fade-out 0.5s ease-in-out forwards";
+    
+        setTimeout(function() {
+            contenedorNotificacion.style.display = "none";
+        }, 500);
+        }, 1500);
+    }
+    }
+
+
+    </script>
+</body>
+</html>
